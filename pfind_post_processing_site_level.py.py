@@ -2,6 +2,13 @@ calculation=input('Please enter the calculation style (lh for light/heavy & hl f
 intscore=input('Please enter the cut off value of interference score:')
 mc=input("Please enter the number of modification in each spectrum(a for single modification & b for multi-modification):")
 print(calculation)
+import os
+if not os.path.exists('int'):
+	os.makedirs('int')
+if not os.path.exists('results'):
+	os.makedirs('results')
+if not os.path.exists('data_protein_group'):
+	os.makedirs('data_protein_group')
 import glob
 file_list=glob.glob('data/*')
 file_counts=0
@@ -77,7 +84,6 @@ for file_name in file_list:
 	print('final data complete')
 	print(str(file_counts)+'Protein data is filtering')
 	
-	import os
 	import shutil
 	shutil.rmtree('data_protein_group')
 	os.mkdir('data_protein_group')
@@ -182,7 +188,7 @@ for file_name in file_list:
 	file_match_site.close()
 	
 	print('Site confirmation complete')
-	print(str(file_counts)+' constructing leader ac list')
+	print(str(file_counts)+' constructing leading ac list')
 	
 	file_data3=open('int/3_confirm_site.txt','rt')	#这个模块是把文件3里的数据完整的拷贝到文件4中，而文件4用于后续的分析工作。
 	file_data4=open('int/4_format_match_site.txt','wt')
@@ -280,7 +286,7 @@ for file_name in file_list:
 	file_list_3.close()
 
 	print('final list is complete')
-	print(str(file_counts)+' calculating the test result')
+	print(str(file_counts)+' quantification is ongoing')
 	
 	file_data3=open('int/3_confirm_site.txt','rt')	#这个模块是把文件3里的数据完整的拷贝到文件4中，而文件4用于后续的分析工作。
 	file_data16=open('int/16_temp2.txt','wt')
@@ -380,7 +386,7 @@ for file_name in file_list:
 	file_final_list.close()
 	file_calculating_result.close()
 	
-	print('Calculation is complete')
+	print('Quantification is complete')
 	print(str(file_counts)+' Adding description')
 	
 	file_calculating_result=open('int/7_calculating_result.txt','rt')
@@ -447,7 +453,7 @@ for file_name in file_list:
 	
 	file_genename=open('int/9_add_genename.txt','rt')
 	file_result=open('results/site_'+calculation+'_'+file_name.replace('data\\',''),'wt')
-	print('AC\tSite\tGenename\tSameSets\tAll Genename_SameSets\tModified sequences\tSpectum Count\tDescription\tRatio '+calculation+'\tSD Ratio\tInterference Score\tSD int\tIdentification Score\tSD ide',file=file_result)
+	print('Uniprot accession number\tSite\tGenename\tSameSets\tAll Genename_SameSets\tModified sequences\tSpectum Count\tDescription\tRatio '+calculation+'\tSD Ratio\tInterference Score\tSD int\tIdentification Score\tSD ide',file=file_result)
 	while True:
 		data_genename=file_genename.readline().replace('\n','')
 		if not data_genename:

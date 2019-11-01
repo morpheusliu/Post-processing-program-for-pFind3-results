@@ -1,3 +1,8 @@
+import os
+if not os.path.exists('library'):
+	os.makedirs('library')
+if not os.path.exists('description'):
+	os.makedirs('description')
 file_database=open('database.txt','rt')
 n=0;
 while True:
