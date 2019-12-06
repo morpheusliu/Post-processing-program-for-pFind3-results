@@ -324,6 +324,7 @@ for file_name in file_list:
 			else:
 				print(ac_xx,file=file_datax,end='')
 		file_datax.close()
+		count_all_data=int(len(arry_ratio)/2)
 		if calculation=='hl':
 			sum_ratio=0
 			for rat in arry_ratio:
@@ -336,6 +337,11 @@ for file_name in file_list:
 				ratio_sd=(sum_ratio_sd/(len(arry_ratio)-1))**0.5
 			elif len(arry_ratio)==1:
 				ratio_sd='NA'
+			arry_ratio_final=sorted(arry_ratio)
+			if len(arry_ratio_final)%2==0:
+				mideann=(float(arry_ratio_final[count_all_data-1])+float(arry_ratio_final[count_all_data]))/2
+			elif len(arry_ratio_final)%2==1:
+				mideann=float(arry_ratio_final[count_all_data])
 		if calculation=='lh':
 			sum_ratio=0
 			for rat in arry_ratio:
@@ -348,6 +354,11 @@ for file_name in file_list:
 				ratio_sd=(sum_ratio_sd/(len(arry_ratio)-1))**0.5
 			elif len(arry_ratio)==1:
 				ratio_sd='NA'
+			arry_ratio_final=sorted(arry_ratio)
+			if len(arry_ratio_final)%2==0:
+				mideann=(1/float(arry_ratio_final[count_all_data-1])+1/float(arry_ratio_final[count_all_data]))/2
+			elif len(arry_ratio_final)%2==1:
+				mideann=1/float(arry_ratio_final[count_all_data])
 		if ratio_sd=='NA':
 			ratio_sd='NA'
 		else:
@@ -382,7 +393,7 @@ for file_name in file_list:
 			ide_sd='NA'
 		else:
 			ide_sd=round(ide_sd,5)
-		print(data_final_list.replace('\n','')+str(round(ave_ratio,5))+'\t'+str(ratio_sd)+'\t'+str(round(ave_inte,5))+'\t'+str(inte_sd)+'\t'+str(round(ave_ide,5))+'\t'+str(ide_sd)+'\t'+str(len(arry_ratio)),file=file_calculating_result)
+		print(data_final_list.replace('\n','')+str(round(mideann,5))+'\t'+str(ratio_sd)+'\t'+str(round(ave_inte,5))+'\t'+str(inte_sd)+'\t'+str(round(ave_ide,5))+'\t'+str(ide_sd)+'\t'+str(len(arry_ratio)),file=file_calculating_result)
 	file_final_list.close()
 	file_calculating_result.close()
 	
