@@ -20,3 +20,5 @@ Python 3.7.3 or any version higher than 3.7.3 should be installed (https://www.p
 (9) Find the output file with the prefix ‘site_’ in the subfolder ‘results’ and import it into Excel.
 
 There are some pictures for illustration in the folder 'instructions'.
+
+With any question, you can contact liukekeno1@126.com.
